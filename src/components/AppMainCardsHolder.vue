@@ -1,6 +1,7 @@
 <script>
 import AppMainCardsHolderCard from './AppMainCardsHolderCard.vue';
 import axios from 'axios';
+import {store} from '../store.js'
 
 export default {
   components:{
@@ -8,7 +9,7 @@ export default {
   },
   data() {
       return {
-      cardList: [],  
+      store,
       apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0',
     }
   },
@@ -17,7 +18,7 @@ export default {
         axios.get(this.apiUrl)
         .then((response) => {
           // console.log(response.data)
-          this.cardList = response.data.data;
+          store.cardList = response.data.data;
         })
       }
   },
@@ -34,7 +35,7 @@ export default {
     </div>
     <div class="container">
       <div class="row row-cols-5 justify-content-center" >
-          <AppMainCardsHolderCard v-for="card in cardList" :key=card.id
+          <AppMainCardsHolderCard v-for="card in store.cardList" :key=card.id
             :cardObj="card"
           />
       </div>
