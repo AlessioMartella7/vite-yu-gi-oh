@@ -2,10 +2,12 @@
 import AppMainCardsHolderCard from './AppMainCardsHolderCard.vue';
 import axios from 'axios';
 import {store} from '../store.js'
+import AppMainCardsHolderLoader from './AppMainCardsHolderLoader.vue';
 
 export default {
   components:{
-      AppMainCardsHolderCard
+      AppMainCardsHolderCard,
+      AppMainCardsHolderLoader
   },
   data() {
       return {
@@ -17,13 +19,13 @@ export default {
       getCards (){
         axios.get(this.apiUrl)
         .then((response) => {
-          // console.log(response.data)
           store.cardList = response.data.data;
         })
       }
   },
+
   created(){
-    this.getCards();
+    setTimeout(this.getCards,2000);
   },
 }
 </script>
@@ -33,9 +35,10 @@ export default {
     <div class="search-result py-4 ps-3" >
         <p class="text-white fw-bold">Search Result</p>
     </div>
-    <div class="container">
+    <AppMainCardsHolderLoader v-if="store.cardList.length === 0 "/>
+    <div v-else class="container">
       <div class="row row-cols-5 justify-content-center" >
-          <AppMainCardsHolderCard v-for="card in store.cardList" :key=card.id
+        <AppMainCardsHolderCard v-for="card in store.cardList" :key=card.id 
             :cardObj="card"
           />
       </div>
