@@ -28,7 +28,6 @@ export default {
 
 main {
   background-color: #D48F3B;
-  height: 1200px;
   padding-top: 5rem;
 }
 

@@ -51,7 +51,7 @@ export default {
 }
 #card-holder {
   background-color: #fff;
-  height: 700px;
+
 
 }
 </style>
