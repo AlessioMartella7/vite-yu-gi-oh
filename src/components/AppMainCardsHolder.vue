@@ -31,13 +31,16 @@ export default {
 </script>
 
 <template>
-  <section id="card-holder">
-    <div class="search-result py-4 ps-3" >
-        <p class="text-white fw-bold">Search Result</p>
-    </div>
+  <section id="card-holder" class="bg-white p-4">
+    
     <AppMainCardsHolderLoader v-if="store.cardList.length === 0 "/>
     <div v-else class="container">
-      <div class="row row-cols-5 justify-content-center" >
+      <div class="row row-cols-5 justify-content-center mt-0" >
+        <div class="col-12">
+          <div class="search-result py-4 ps-3" >
+            <p class="text-white fw-bold">Search Result</p>
+        </div>
+      </div>
         <AppMainCardsHolderCard v-for="card in store.cardList" :key=card.id 
             :cardObj="card"
           />
@@ -53,9 +56,5 @@ export default {
   height: 80px;
 
 }
-#card-holder {
-  background-color: #fff;
 
-
-}
 </style>

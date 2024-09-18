@@ -15,7 +15,7 @@ export default {
 </script>
 
 <template>
-<div class="col my-3">
+<div class="col mb-3">
     <div class="card h-100">
       <img :src="cardObj.card_images[0].image_url_small" class="card-img-top" :alt="cardObj.name">
       <div class="card-body d-flex flex-column justify-content-between align-items-center text-center">
