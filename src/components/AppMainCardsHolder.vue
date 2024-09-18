@@ -16,8 +16,8 @@ export default {
       getCards (){
         axios.get(this.apiUrl)
         .then((response) => {
-          console.log(response.data)
-          // this.cardList = response.data.card_sets;
+          // console.log(response.data)
+          this.cardList = response.data.data;
         })
       }
   },
@@ -34,7 +34,9 @@ export default {
     </div>
     <div class="container">
       <div class="row row-cols-5 justify-content-center" >
-          <AppMainCardsHolderCard/>
+          <AppMainCardsHolderCard v-for="card in cardList" :key=card.id
+            :cardObj="card"
+          />
       </div>
   </div>
   </section> 
