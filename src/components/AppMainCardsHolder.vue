@@ -27,19 +27,20 @@ export default {
           store.cardList = response.data.data;
         })
       },
-      getArchetype (){
+      getArchetypeList (){
         axios.get(this.apiArchetypeUrl)
         .then((response)=> {
-        console.log(response)
         this.archObject = response.data;
-        console.log('stampa dati',response.data)
         })
+      },
+      searchByArchetype (){
+        
       }
   },
 
   created(){
     setTimeout(this.getCards,2000);
-    this.getArchetype();
+    this.getArchetypeList();
   },
 }
 </script>
