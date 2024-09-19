@@ -18,26 +18,42 @@ export default {
       store,
       apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=45&offset=0',
       apiArchetypeUrl: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
+      apiFilteredUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
     }
   },
   methods:{
+      //chiamata principale per ottenere la lista delle carte
       getCards (){
         axios.get(this.apiUrl)
         .then((response) => {
           store.cardList = response.data.data;
         })
       },
+
+      // chiamata per ottenere gli archetipo delle carte
       getArchetypeList (){
         axios.get(this.apiArchetypeUrl)
         .then((response)=> {
         this.archObject = response.data;
         })
       },
-      searchByArchetype (message){
-        // axios.get(this.apiArchetypeUrl, message)
-        // .then((response)=> {
-       console.log('STAMPA search By Archetype',message )
+      // chiamata per ottenere le carte filtrate
+      filteredCards (archetypeName){
+        axios.get(this.apiFilteredUrl,{
+              params:{
+                 archetype:archetypeName
+             }
+          })
+          .then((response) => {
+            store.cardList = response.data.data;
+        })
+      },
+      
+      //passaggio di informazioni ricevute da AppMainSelect
+      searchByArchetype (archetypeInput){
+       this.filteredCards(archetypeInput)
       }
+
   },
 
   created(){
