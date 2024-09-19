@@ -3,11 +3,14 @@ import AppMainCardsHolderCard from './AppMainCardsHolderCard.vue';
 import axios from 'axios';
 import {store} from '../store.js'
 import AppMainCardsHolderLoader from './AppMainCardsHolderLoader.vue';
+import AppMainSelect from './AppMainSelect.vue';
+
 
 export default {
   components:{
       AppMainCardsHolderCard,
-      AppMainCardsHolderLoader
+      AppMainCardsHolderLoader,
+      AppMainSelect
   },
   data() {
       return {
@@ -31,8 +34,8 @@ export default {
 </script>
 
 <template>
+  <AppMainSelect/>
   <section id="card-holder" class="bg-white p-4">
-    
     <AppMainCardsHolderLoader v-if="store.cardList.length === 0 "/>
     <div v-else class="container">
       <div class="row row-cols-5 justify-content-center mt-0" >

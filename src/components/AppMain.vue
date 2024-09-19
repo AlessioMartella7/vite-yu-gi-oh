@@ -1,11 +1,10 @@
 <script>
 import AppMainCardsHolder from './AppMainCardsHolder.vue';
-import AppMainSearch from './AppMainSearch.vue';
 
 export default {
   components: {
       AppMainCardsHolder,
-      AppMainSearch
+     
     },
   data() {
       return {
@@ -18,7 +17,6 @@ export default {
 <template>
 <main>
   <div class="container">
-<AppMainSearch/>
 <AppMainCardsHolder/>
 </div>
 </main>
