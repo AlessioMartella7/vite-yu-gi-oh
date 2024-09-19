@@ -15,8 +15,8 @@ export default {
   }, 
 
   methods:{
-    filterByArchetype(){
-      console.log('searched Archetype',this.searchedArchetype)
+    filterByArchetype(message){
+      this.$emit('archetypeSelect', message)
     },
   }
 

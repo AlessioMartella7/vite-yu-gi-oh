@@ -33,8 +33,10 @@ export default {
         this.archObject = response.data;
         })
       },
-      searchByArchetype (){
-        
+      searchByArchetype (message){
+        // axios.get(this.apiArchetypeUrl, message)
+        // .then((response)=> {
+       console.log('STAMPA search By Archetype',message )
       }
   },
 
