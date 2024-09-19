@@ -14,8 +14,10 @@ export default {
   },
   data() {
       return {
+      archObject: [],  
       store,
-      apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0',
+      apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=45&offset=0',
+      apiArchetypeUrl: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
     }
   },
   methods:{
@@ -24,17 +26,29 @@ export default {
         .then((response) => {
           store.cardList = response.data.data;
         })
+      },
+      getArchetype (){
+        axios.get(this.apiArchetypeUrl)
+        .then((response)=> {
+        console.log(response)
+        this.archObject = response.data;
+        console.log('stampa dati',response.data)
+        })
       }
   },
 
   created(){
     setTimeout(this.getCards,2000);
+    this.getArchetype();
   },
 }
 </script>
 
 <template>
-  <AppMainSelect/>
+  <AppMainSelect
+  :archetypeName="archObject"
+  @archetype-select="searchByArchetype"
+  />
   <section id="card-holder" class="bg-white p-4">
     <AppMainCardsHolderLoader v-if="store.cardList.length === 0 "/>
     <div v-else class="container">

@@ -1,20 +1,28 @@
 <script>
 export default {
+
   data() {
     return {
       
     }
-  }
+  },
+  props: {
+    archetypeName:{
+      type: Array,
+      Required:true,
+    },
+  } 
+
 }
+
 </script>
 
-
 <template>
-  <select class="form-select mb-5 w-25" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
+  <select class="form-select mb-5 w-25" aria-label="Default select example" >
+  <option v-for="(arch,index) in archetypeName" :value="index" >{{ arch.archetype_name }}
+
+  </option>
+  
 </select>
 </template>
 
